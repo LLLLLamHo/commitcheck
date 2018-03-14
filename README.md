@@ -10,7 +10,7 @@ npm install commitcheck --save-dev
 
 ## 运行命令
 
-commitcheck是基于[husky]('https://github.com/typicode/husky')进行开发的，所以需要配置husky的命令。然后执行`commitcheck`的命令.
+commitcheck是基于[husky](https://github.com/typicode/husky)进行开发的，所以需要配置husky的命令。然后执行`commitcheck`的命令.
 
 package.json
 
