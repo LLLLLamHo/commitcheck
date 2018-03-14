@@ -4,7 +4,8 @@
   "description": "lamho",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "precommit": "znpm run check",
+    "check": "node ./src/index.js"
   },
   "author": "",
   "license": "ISC",
