@@ -28,7 +28,6 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
             let fileContent: string = openFile( array[ i ] );
             if ( fileContent != '' ) {
                 let isError = checkFileContent( array[ i ], fileContent, config.keyword );
-                console.log( isError );
                 if ( isError ) {
                     pass = 1;
                 }
