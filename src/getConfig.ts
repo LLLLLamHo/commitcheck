@@ -16,14 +16,15 @@ export = function getConfig (): object {
     if ( fs.existsSync( configFilePath ) ) {
 
         let config: any = require( configFilePath );
-
-        for ( let i = 0; i < defaultConfing.include.length; i++ ) {
-            if ( config.include.indexOf( defaultConfing.include[ i ] ) == -1 ) {
-                config.include.push( defaultConfing.include[ i ] );
+        
+        if ( config.include && config.include.legnth > 0 ) { 
+            for ( let i = 0; i < defaultConfing.include.length; i++ ) {
+                if ( config.include.indexOf( defaultConfing.include[ i ] ) == -1 ) {
+                    config.include.push( defaultConfing.include[ i ] );
+                }
             }
+            defaultConfing.include = [];
         }
-
-        defaultConfing.include = [];
 
         return Object.assign( {}, defaultConfing, config );
     } else {
