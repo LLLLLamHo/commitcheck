@@ -1,6 +1,6 @@
 {
   "name": "commitcheck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "lamho",
   "main": "index.js",
   "bin": "./dist/index",
