@@ -14,7 +14,7 @@ let includeFiles = getIncludeFiles( config );
 
 exec( 'git diff --cached --name-only', ( error, stdout ) => {
 
-    if ( keyword.length == 0 ) {
+    if ( keyword.length === 0 ) {
         process.exit( 0 );
     }
 
@@ -22,11 +22,11 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
         const array: Array<string> = stdout.split( '\n' )
         array.pop()
         for ( let i = 0; i < array.length; i++ ) {
-            if ( includeFiles.indexOf( `./${ array[ i ] }` ) == -1 ) {
+            if ( includeFiles.indexOf( `./${ array[ i ] }` ) === -1 ) {
                 continue;
             }
             let fileContent: string = openFile( array[ i ] );
-            if ( fileContent != '' ) {
+            if ( fileContent !== '' ) {
                 let isError = checkFileContent( array[ i ], fileContent, config.keyword );
                 if ( isError ) {
                     pass = 1;
@@ -34,10 +34,10 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
             }
         }
 
-        if ( pass = 0 ) {
+        if ( pass === 0 ) {
             console.log( colors.green( '检查通过' ) );
         }
-
+        
         process.exit( pass );
     }
     if ( error !== null ) {
