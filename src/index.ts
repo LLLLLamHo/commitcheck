@@ -31,11 +31,7 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
                 console.log( isError );
                 if ( isError ) {
                     pass = 1;
-                } else {
-                    pass = 0;
                 }
-            } else {
-                pass = 1;
             }
         }
 

@@ -28,12 +28,6 @@ exec('git diff --cached --name-only', (error, stdout) => {
                 if (isError) {
                     pass = 1;
                 }
-                else {
-                    pass = 0;
-                }
-            }
-            else {
-                pass = 1;
             }
         }
         if (pass = 0) {
