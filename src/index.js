@@ -13,6 +13,7 @@ let includeFiles = getIncludeFiles( config );
 
 exec( 'git diff --cached --name-only', ( error, stdout ) => {
     console.log( 123 );
+    process.exit( 1 );
     if ( keyword.length == 0 ) { 
         process.exit( 0 );
     }
