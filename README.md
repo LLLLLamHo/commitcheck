@@ -16,8 +16,8 @@ package.json
 
 ```json
 "scripts": {
-    "precommit": "znpm run check",// husky的precommit命令
-    "check": "node ./node_modules/.bin/commitcheck"// commitcheck命令
+    "precommit": "znpm run check",                      // husky的precommit命令
+    "check": "node ./node_modules/.bin/commitcheck"     // commitcheck命令
 }
 ```
 
