@@ -2,16 +2,9 @@
 
 var glob = require( "glob" );
 
-namespace getIncludefiles { 
-    export interface ConfigData {
-        include: number[],
-        exclude: number[]
-    }
-}
+function getIncludefiles ( config: {include: number[],exclude: number[]} ): any {
 
-function getIncludefiles ( config: getIncludefiles.ConfigData ): any {
-
-    let { include, exclude }: { include: number[], exclude: number[] } = config;
+    let { include, exclude } = config;
     let includeCheckFiles: number[] = [];
     let excludeCheckFiles: number[] = [];
 

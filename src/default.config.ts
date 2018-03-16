@@ -1,5 +1,6 @@
 export = {
     include: [],
     exclude: [],
-    keyword: []
+    keyword: [],
+    branchs: []
 }
