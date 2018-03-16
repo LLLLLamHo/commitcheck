@@ -1,6 +1,13 @@
 export = {
-    include: [],
-    exclude: [],
-    keyword: [],
-    branchs: []
+    keywordTask: {
+        include: [],
+        exclude: [],
+        keyword: [],
+        branchs: []
+    },
+    eslintTask: {
+        include: [],
+        exclude: [],
+        branchs: []
+    }
 }

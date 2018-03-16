@@ -2,30 +2,46 @@
 var fs = require( 'fs' );
 var path = require( 'path' );
 
-export = function getConfig (): object {
-    
-    let defaultConfing: {
-        include: number[],
+interface keywordTaskProps {
+    keywordTask: {
+        keyword: number[],
         exclude: number[],
-        keyword: number[]
-    } = require( './default.config' );
+        include: number[],
+        branchs: number[]
+    }
+}
 
+function setKeywordTask ( defaultConfing: keywordTaskProps, config: keywordTaskProps ): object {
+
+    let defaultConfing_keywordTask = defaultConfing.keywordTask;
+    let config_keywordTask = config.keywordTask;
+
+    if ( config_keywordTask ) { 
+        for ( let key in defaultConfing_keywordTask ) { 
+            config_keywordTask[key] = config_keywordTask[key].concat(defaultConfing_keywordTask[key])
+        }
+    
+        return config_keywordTask;
+    }
+    
+    return defaultConfing_keywordTask;
+    
+}
+
+
+
+export = function getConfig (): object {
+
+    let defaultConfing: any = require( './default.config' );
     let cwd: string = process.cwd();
     let configFilePath: string = path.join( cwd, './precommit.config.js' );
 
     if ( fs.existsSync( configFilePath ) ) {
 
         let config: any = require( configFilePath );
-        
-        if ( config.include && config.include.legnth > 0 ) { 
-            for ( let i = 0; i < defaultConfing.include.length; i++ ) {
-                if ( config.include.indexOf( defaultConfing.include[ i ] ) == -1 ) {
-                    config.include.push( defaultConfing.include[ i ] );
-                }
-            }
-            defaultConfing.include = [];
-        }
 
+        //组合检测关键字的配置
+        config.keywordTask = setKeywordTask( defaultConfing, config );
         return Object.assign( {}, defaultConfing, config );
     } else {
         return defaultConfing;
