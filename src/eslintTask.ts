@@ -53,26 +53,54 @@ function getErrorLevel ( number: number ): string {
     return 'undefined'
 }
 
+function getEslintConfig (): string {
+
+    const fs = require( 'fs' );
+    const path = require( 'path' );
+    const cwd = process.cwd();
+
+    const configPath: Array<string> = [
+        '.eslintrc.js',
+        '.eslintrc.yaml',
+        '.eslintrc.yml',
+        '.eslintrc.json',
+        '.eslintrc',
+    ];
+
+    let eslintConfigPath: string = './eslintrc.config.js';
+    for ( let i: number = 0; i < configPath.length; i++ ) {
+        let currPath = path.join( cwd, configPath[ i ] );
+        if ( fs.existsSync( currPath ) ) {
+            eslintConfigPath = currPath;
+            break;
+        }
+    }
+    return eslintConfigPath;
+}
+
 function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, currBranch: string, currPass: number ): number {
     const colors = require( 'colors' );
     const { include, exclude, branchs, isNoConsole, isNoAlert, isNoDebugger } = config;
 
-    let eslintConfig: any = require( './eslintrc.config.js' );
+    let eslintConfig: any = require( getEslintConfig() );
+
+    console.log( eslintConfig );
+
     eslintConfig = extendEslintConfig( eslintConfig, isNoConsole, isNoAlert, isNoDebugger );
     const CLIEngine = require( 'eslint' ).CLIEngine;
     const cli = new CLIEngine( eslintConfig );
 
     let pass: number = 0;
 
-    if ( include.length === 0 ) { 
+    if ( include.length === 0 ) {
         return currPass === 0 ? pass : currPass;
     }
     if ( isArray( branchs ) ) {
         if ( branchs.length === 0 || branchs.indexOf( currBranch ) === -1 ) {
             return currPass === 0 ? pass : currPass;
         }
-    } else { 
-        if ( !branchs ) { 
+    } else {
+        if ( !branchs ) {
             return currPass === 0 ? pass : currPass;
         }
     }

@@ -1,6 +1,6 @@
 {
   "name": "commitcheck",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "lamho",
   "main": "index.js",
   "bin": "./bin/index.js",
@@ -8,7 +8,8 @@
     "precommit": "znpm run check",
     "check": "node ./bin/index.js",
     "build": "./node_modules/.bin/tsc",
-    "watch": "./node_modules/.bin/tsc-watch"
+    "watch": "./node_modules/.bin/tsc-watch",
+    "postinstall": "node ./dist/createEslintrc.js"
   },
   "author": "",
   "license": "ISC",

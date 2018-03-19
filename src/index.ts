@@ -29,7 +29,7 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
             console.log( colors.green( '检查通过' ) );
         }
 
-        process.exit( pass );
+        process.exit( 1 );
     }
     if ( error !== null ) {
         console.log( colors.red( `exec error: ${ error }` ) );
