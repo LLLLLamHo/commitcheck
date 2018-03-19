@@ -42,7 +42,8 @@ module.exports = {
 }
 ```
 
-`keywordTask`关键字任务
+`keywordTask` -> 关键字任务配置
+
 | 属性    | 说明         | 类型  | 默认值 |
 | ------- | ------------ | ----- | ------ |
 | keyword | 搜索的关键字 | array | []     |
@@ -50,7 +51,8 @@ module.exports = {
 | include | 包含那些文件 | array | []     |
 | branchs | 针对那些分支 | array | []     |
 
-`eslintTask`eslint任务
+`eslintTask` -> eslint任务配置
+
 | 属性         | 说明             | 类型    | 默认值 |
 | ------------ | ---------------- | ------- | ------ |
 | exclude      | 排除那些文件     | array   | []     |
