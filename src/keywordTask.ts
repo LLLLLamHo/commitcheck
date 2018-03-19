@@ -17,11 +17,21 @@ function keywordTask ( config: keywordTask.PropsData, commitFiles: Array<string>
     let pass: number = 0;
     let errorCount: number = 0;
     let { keyword, branchs, include, exclude } = config;
-    console.log( branchs );
     let includeFiles: Array<string> = getIncludeFiles( include, exclude );
     //没有关键字直接退出或者不是指定分支
-    if ( keyword.length === 0 || branchs.length === 0 || ( isArray( branchs ) && branchs.indexOf( currBranch ) === -1 ) || !branchs ) {
+    
+    if ( keyword.length === 0 ) { 
         return pass;
+    }
+
+    if ( isArray( branchs ) ) {
+        if ( branchs.length === 0 || branchs.indexOf( currBranch ) === -1 ) {
+            return pass;
+        }
+    } else { 
+        if ( !branchs ) { 
+            return pass;
+        }
     }
 
     for ( let i = 0; i < commitFiles.length; i++ ) {

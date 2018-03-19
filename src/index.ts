@@ -20,16 +20,16 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
         //执行检查关键字
         console.log( colors.green( '开始检查关键字...' ) );
         pass = keywordTask( config.keywordTask, array, currBranch );
-
+        console.log( colors.green( '完成检查关键字' ) );
         //接入eslint
         console.log( colors.green( '开始运行eslint...' ) );
         pass = eslintTask( config.eslintTask, array, currBranch, pass );
-
+        console.log( colors.green( '完成eslint' ) );
         if ( pass === 0 ) {
             console.log( colors.green( '检查通过' ) );
         }
 
-        process.exit( 1 );
+        process.exit( pass );
     }
     if ( error !== null ) {
         console.log( colors.red( `exec error: ${ error }` ) );

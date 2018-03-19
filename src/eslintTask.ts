@@ -64,9 +64,17 @@ function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, 
 
     let pass: number = 0;
 
-
-    if ( include.length == 0 || branchs.length === 0 || ( isArray( branchs ) && branchs.indexOf( currBranch ) === -1 ) || !branchs ) {
+    if ( include.length === 0 ) { 
         return currPass === 0 ? pass : currPass;
+    }
+    if ( isArray( branchs ) ) {
+        if ( branchs.length === 0 || branchs.indexOf( currBranch ) === -1 ) {
+            return currPass === 0 ? pass : currPass;
+        }
+    } else { 
+        if ( !branchs ) { 
+            return currPass === 0 ? pass : currPass;
+        }
     }
 
     let taskFiles: Array<string> = getIncludeFiles( include, exclude );
