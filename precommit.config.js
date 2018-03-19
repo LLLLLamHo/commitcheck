@@ -3,12 +3,12 @@ module.exports = {
         keyword: ['.net', 'www'],
         exclude: ['./test/dist/*.**'],
         include: ['./test/**/*.**'],
-        branchs: ['master']
+        branchs: ['']
     },
     eslintTask: {
         include: ['./test/**/*.**'],
         exclude: ['./test/dist/*.js', './test/dist/*.css'],
-        branchs: ['master'],
+        branchs: [''],
         isNoConsole: true,
         isNoAlert: true,
         isNoDebugger: true
