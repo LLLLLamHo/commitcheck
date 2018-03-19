@@ -1,6 +1,6 @@
 
 import getIncludeFiles = require( './getIncludeFiles' );
-
+import { isArray } from './typeof';
 
 namespace eslintTask {
     export interface PropsData {
@@ -65,8 +65,8 @@ function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, 
     let pass: number = 0;
 
 
-    if ( include.length == 0 || branchs.length === 0 || branchs.indexOf( currBranch ) ) {
-        return pass;
+    if ( include.length == 0 || branchs.length === 0 || ( isArray( branchs ) && branchs.indexOf( currBranch ) === -1 ) || !branchs ) {
+        return currPass === 0 ? pass : currPass;
     }
 
     let taskFiles: Array<string> = getIncludeFiles( include, exclude );

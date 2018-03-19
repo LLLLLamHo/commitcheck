@@ -49,7 +49,7 @@ module.exports = {
 | keyword | 搜索的关键字 | array | []     |
 | exclude | 排除那些文件 | array | []     |
 | include | 包含那些文件 | array | []     |
-| branchs | 针对那些分支 | array | []     |
+| branchs | 针对那些分支，如果为true则检查所有分支 | array/boolean | []     |
 
 `eslintTask` -> eslint任务配置
 
@@ -57,7 +57,7 @@ module.exports = {
 | ------------ | ---------------- | ------- | ------ |
 | exclude      | 排除那些文件     | array   | []     |
 | include      | 包含那些文件     | array   | []     |
-| branchs      | 针对那些分支     | array   | []     |
+| branchs      | 针对那些分支，如果为true则检查所有分支     | array/boolean   | []     |
 | isNoConsole  | 是否禁止console  | boolean | false  |
 | isNoAlert    | 是否禁止alert    | boolean | false  |
 | isNoDebugger | 是否禁止debugger | boolean | false  |

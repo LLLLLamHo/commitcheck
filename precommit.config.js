@@ -3,7 +3,7 @@ module.exports = {
         keyword: ['.net', 'www'],
         exclude: ['./test/dist/*.**'],
         include: ['./test/**/*.**'],
-        branchs: ['']
+        branchs: true
     },
     eslintTask: {
         include: ['./test/**/*.**'],

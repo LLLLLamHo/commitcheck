@@ -1,4 +1,4 @@
-const a = '.net';
+const a = '.net123';
 console.log( a );
 
 function test( props ) {
