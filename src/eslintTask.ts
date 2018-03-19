@@ -83,9 +83,6 @@ function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, 
     const { include, exclude, branchs, isNoConsole, isNoAlert, isNoDebugger } = config;
 
     let eslintConfig: any = require( getEslintConfig() );
-
-    console.log( eslintConfig );
-
     eslintConfig = extendEslintConfig( eslintConfig, isNoConsole, isNoAlert, isNoDebugger );
     const CLIEngine = require( 'eslint' ).CLIEngine;
     const cli = new CLIEngine( eslintConfig );
