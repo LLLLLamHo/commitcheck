@@ -8,6 +8,9 @@ export = {
     eslintTask: {
         include: [],
         exclude: [],
-        branchs: []
+        branchs: [],
+        isNoConsole: false,
+        isNoAlert: false,
+        isNoDebugger: false
     }
 }

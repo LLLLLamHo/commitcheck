@@ -25,16 +25,38 @@ package.json
 
 ```js
 module.exports = {
-    keyword: ['.net'],
-    exclude: ['./src/text/*.js'],
-    include: ['./test/*.js']
+    keywordTask: {
+        keyword: ['.net', 'www'],
+        exclude: ['./test/dist/*.**'],
+        include: ['./test/**/*.**'],
+        branchs: ['master']
+    },
+    eslintTask: {
+        include: ['./test/**/*.**'],
+        exclude: ['./test/dist/*.js'],
+        branchs: ['master'],
+        isNoConsole: true,
+        isNoAlert: true,
+        isNoDebugger: true
+    }
 }
 ```
 
+`keywordTask`关键字任务
 | 属性    | 说明         | 类型  | 默认值 |
 | ------- | ------------ | ----- | ------ |
 | keyword | 搜索的关键字 | array | []     |
 | exclude | 排除那些文件 | array | []     |
 | include | 包含那些文件 | array | []     |
+| branchs | 针对那些分支 | array | []     |
 
+`eslintTask`eslint任务
+| 属性         | 说明             | 类型    | 默认值 |
+| ------------ | ---------------- | ------- | ------ |
+| exclude      | 排除那些文件     | array   | []     |
+| include      | 包含那些文件     | array   | []     |
+| branchs      | 针对那些分支     | array   | []     |
+| isNoConsole  | 是否禁止console  | boolean | false  |
+| isNoAlert    | 是否禁止alert    | boolean | false  |
+| isNoDebugger | 是否禁止debugger | boolean | false  |
 

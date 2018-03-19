@@ -1,13 +1,16 @@
 module.exports = {
     keywordTask: {
-        keyword: ['.net'],
-        exclude: ['./src/text/*.js'],
-        include: ['./test/*.js'],
+        keyword: ['.net', 'www'],
+        exclude: ['./test/dist/*.**'],
+        include: ['./test/**/*.**'],
         branchs: ['master']
     },
     eslintTask: {
-        include: ['./src/text/*.js'],
-        exclude: ['./test/*.js'],
-        branchs: ['master']
+        include: ['./test/**/*.**'],
+        exclude: ['./test/dist/*.js', './test/dist/*.css'],
+        branchs: ['master'],
+        isNoConsole: true,
+        isNoAlert: true,
+        isNoDebugger: true
     }
-}
+};

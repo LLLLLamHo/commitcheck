@@ -1,25 +1,23 @@
 
-import getKeywordTaskIncludeFiles = require( './getKeywordTaskIncludeFiles' );
+import getIncludeFiles = require( './getIncludeFiles' );
 import openFile = require( './openFile' );
 import checkFileContent = require( './checkFileContent' );
 
-namespace keywordTaskProps {
-
+namespace keywordTask {
     export interface PropsData {
         keyword: Array<string>,
         branchs: Array<string>,
         include: Array<string>,
         exclude: Array<string>
     }
-
 }
 
-export = function keywordTask ( config: any, commitFiles: Array<string>, currBranch: string ): number {
-
-    let pass = 0;
-    let { keyword, branchs, include, exclude }: { keyword: Array<string>, branchs: Array<string>, include: Array<string>, exclude: Array<string> } = config;
-    let includeFiles = getKeywordTaskIncludeFiles( include, exclude );
-
+function keywordTask ( config: keywordTask.PropsData, commitFiles: Array<string>, currBranch: string ): number {
+    const colors = require( 'colors' );
+    let pass: number = 0;
+    let errorCount: number = 0;
+    let { keyword, branchs, include, exclude } = config;
+    let includeFiles: Array<string> = getIncludeFiles( include, exclude );
     //没有关键字直接退出或者不是指定分支
     if ( keyword.length === 0 || branchs.length === 0 || branchs.indexOf( currBranch ) === -1 ) {
         process.exit( pass );
@@ -31,13 +29,23 @@ export = function keywordTask ( config: any, commitFiles: Array<string>, currBra
         }
         let fileContent: string = openFile( commitFiles[ i ] );
         if ( fileContent !== '' ) {
-            let isError = checkFileContent( commitFiles[ i ], fileContent, include );
+            let isError = checkFileContent( commitFiles[ i ], fileContent, keyword );
             if ( isError ) {
+                errorCount++;
                 pass = 1;
             }
         }
     }
-    console.log( pass );
+
+    if ( pass === 0 && errorCount === 0 ) {
+        console.log( colors.green( '关键字检查通过！' ) );
+    } else {
+        console.log( colors.red( '关键字检查不通过！' ) );
+        console.log( colors.red( `共发现${ errorCount }个错误` ) );
+    }
+
     return pass;
 }
+
+export = keywordTask;
 

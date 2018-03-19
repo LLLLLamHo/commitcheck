@@ -2,7 +2,7 @@
 
 var glob = require( "glob" );
 
-function getKeywordTaskIncludeFiles ( include: Array<string>, exclude: Array<string> ): any {
+function getIncludeFiles ( include: Array<string>, exclude: Array<string> ): any {
 
     let includeCheckFiles: number[] = [];
     let excludeCheckFiles: number[] = [];
@@ -35,4 +35,4 @@ function getKeywordTaskIncludeFiles ( include: Array<string>, exclude: Array<str
 }
 
 
-export = getKeywordTaskIncludeFiles;
+export = getIncludeFiles;

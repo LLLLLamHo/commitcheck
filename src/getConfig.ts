@@ -1,36 +1,32 @@
+import { isArray } from './typeof';
 
-var fs = require( 'fs' );
-var path = require( 'path' );
-
-interface keywordTaskProps {
-    keywordTask: {
-        keyword: number[],
-        exclude: number[],
-        include: number[],
-        branchs: number[]
-    }
+interface taskConfigProps {
+    keyword: number[],
+    exclude: number[],
+    include: number[],
+    branchs: number[]
 }
 
-function setKeywordTask ( defaultConfing: keywordTaskProps, config: keywordTaskProps ): object {
-
-    let defaultConfing_keywordTask = defaultConfing.keywordTask;
-    let config_keywordTask = config.keywordTask;
-
-    if ( config_keywordTask ) { 
-        for ( let key in defaultConfing_keywordTask ) { 
-            config_keywordTask[key] = config_keywordTask[key].concat(defaultConfing_keywordTask[key])
+function setTaskConfig ( defaultConfing: taskConfigProps, config: taskConfigProps ): object {
+    if ( config ) {
+        for ( let key in defaultConfing ) {
+            if ( config[ key ] ) {
+                if ( isArray( config[ key ] ) ) {
+                    config[ key ] = config[ key ].concat( defaultConfing[ key ] )
+                }
+            } else {
+                config[ key ] = defaultConfing[ key ];
+            }
         }
-    
-        return config_keywordTask;
+        return config;
     }
-    
-    return defaultConfing_keywordTask;
-    
+    return defaultConfing;
 }
-
-
 
 export = function getConfig (): object {
+
+    const fs = require( 'fs' );
+    const path = require( 'path' );
 
     let defaultConfing: any = require( './default.config' );
     let cwd: string = process.cwd();
@@ -41,7 +37,9 @@ export = function getConfig (): object {
         let config: any = require( configFilePath );
 
         //组合检测关键字的配置
-        config.keywordTask = setKeywordTask( defaultConfing, config );
+        config.keywordTask = setTaskConfig( defaultConfing.keywordTask, config.keywordTask );
+        config.eslintTask = setTaskConfig( defaultConfing.eslintTask, config.eslintTask );
+
         return Object.assign( {}, defaultConfing, config );
     } else {
         return defaultConfing;
