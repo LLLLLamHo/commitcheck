@@ -59,7 +59,6 @@ function getEslintConfig (): string {
             break;
         }
     }
-    console.log( eslintConfigPath );
     return eslintConfigPath;
 }
 

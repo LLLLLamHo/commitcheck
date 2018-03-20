@@ -16,8 +16,20 @@ package.json
 
 ```json
 "scripts": {
-    "precommit": "znpm run check",                      // husky的precommit命令
-    "check": "node ./node_modules/.bin/commitcheck"     // commitcheck命令
+    "precommit": "znpm run check",                 // husky的precommit命令
+    "check": "./node_modules/.bin/commitcheck"     // commitcheck命令
+}
+```
+
+默认会在`CHECK_ENV=production`的状态下加上以下的配置。
+- 'no-console'
+- 'no-alert'
+- 'no-debugger'
+
+```json
+"scripts": {
+    "precommit": "znpm run check",                 // husky的precommit命令
+    "check": "CHECK_ENV=production ./node_modules/.bin/commitcheck"     // commitcheck命令
 }
 ```
 
