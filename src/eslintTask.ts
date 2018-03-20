@@ -13,17 +13,18 @@ namespace eslintTask {
     }
 }
 
-function extendEslintConfig ( eslintConfig: any, isNoConsole: boolean, isNoAlert: boolean, isNoDebugger: boolean ): object {
+function extendRules ( isNoConsole: boolean, isNoAlert: boolean, isNoDebugger: boolean ): number[] {
+    let rules = []; 
     if ( isNoConsole ) {
-        eslintConfig.rules[ 'no-console' ] = 2;
+        rules[ 'no-console' ] = 2;
     }
     if ( isNoAlert ) {
-        eslintConfig.rules[ 'no-alert' ] = 2;
+        rules[ 'no-alert' ] = 2;
     }
     if ( isNoDebugger ) {
-        eslintConfig.rules[ 'no-debugger' ] = 2;
+        rules[ 'no-debugger' ] = 2;
     }
-    return eslintConfig;
+    return rules;
 }
 
 function getRunEslintFiles ( commitFile: Array<string>, includeFiles: Array<string> ): Array<string> {
@@ -67,7 +68,7 @@ function getEslintConfig (): string {
         '.eslintrc',
     ];
 
-    let eslintConfigPath: string = './eslintrc.config.js';
+    let eslintConfigPath: string = path.join(__dirname,'./eslintrc.config.js') ;
     for ( let i: number = 0; i < configPath.length; i++ ) {
         let currPath = path.join( cwd, configPath[ i ] );
         if ( fs.existsSync( currPath ) ) {
@@ -75,6 +76,7 @@ function getEslintConfig (): string {
             break;
         }
     }
+    console.log( eslintConfigPath );
     return eslintConfigPath;
 }
 
@@ -82,10 +84,13 @@ function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, 
     const colors = require( 'colors' );
     const { include, exclude, branchs, isNoConsole, isNoAlert, isNoDebugger } = config;
 
-    let eslintConfig: any = require( getEslintConfig() );
-    eslintConfig = extendEslintConfig( eslintConfig, isNoConsole, isNoAlert, isNoDebugger );
+    let eslintConfig: string = getEslintConfig();
+    let rules = extendRules( isNoConsole, isNoAlert, isNoDebugger );
     const CLIEngine = require( 'eslint' ).CLIEngine;
-    const cli = new CLIEngine( eslintConfig );
+    const cli = new CLIEngine( {
+        configFile: eslintConfig,
+        rules: rules
+    } );
 
     let pass: number = 0;
 

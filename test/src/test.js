@@ -3,6 +3,7 @@ import { screen } from '../screen/screen.js';
 
 const cache = {};
 
+
 export default function ( state, list, selectedData, sortType, leftScreen ) {
     // 组成各种筛选条件的key
     const screenDataArr = [];
