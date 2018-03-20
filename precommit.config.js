@@ -8,7 +8,7 @@ module.exports = {
     eslintTask: {
         include: ['./test/**/*.**'],
         exclude: ['./test/dist/*.js', './test/dist/*.css'],
-        branchs: false,
+        branchs: true,
         isNoConsole: true,
         isNoAlert: true,
         isNoDebugger: true
