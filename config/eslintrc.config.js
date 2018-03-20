@@ -90,4 +90,11 @@ const eslintrc = {
     }
 }
 
+const CHECK_ENV = process.env.CHECK_ENV;
+if ( CHECK_ENV === 'production' ) {
+    eslintrc.rules['no-console'] = 2;
+    eslintrc.rules['no-alert'] = 2;
+    eslintrc.rules['no-debugger'] = 2;
+}
+
 module.exports = eslintrc;

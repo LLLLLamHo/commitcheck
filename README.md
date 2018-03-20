@@ -34,10 +34,7 @@ module.exports = {
     eslintTask: {
         include: ['./test/**/*.**'],
         exclude: ['./test/dist/*.js'],
-        branchs: ['master'],
-        isNoConsole: true,
-        isNoAlert: true,
-        isNoDebugger: true
+        branchs: ['master']
     }
 }
 ```
@@ -58,9 +55,6 @@ module.exports = {
 | exclude      | 排除那些文件     | array   | []     |
 | include      | 包含那些文件     | array   | []     |
 | branchs      | 针对那些分支，如果为true则检查所有分支     | array/boolean   | []     |
-| isNoConsole  | 是否禁止console  | boolean | false  |
-| isNoAlert    | 是否禁止alert    | boolean | false  |
-| isNoDebugger | 是否禁止debugger | boolean | false  |
 
 当项目中存在eslintrc.js,则会以项目配置的eslintrc.js的配置内容为优先。
 

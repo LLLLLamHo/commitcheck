@@ -28,7 +28,6 @@ exec( 'git diff --cached --name-only', ( error, stdout ) => {
         if ( pass === 0 ) {
             console.log( colors.green( '检查通过' ) );
         }
-
         process.exit( pass );
     }
     if ( error !== null ) {

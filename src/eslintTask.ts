@@ -6,25 +6,8 @@ namespace eslintTask {
     export interface PropsData {
         branchs: Array<string>,
         include: Array<string>,
-        exclude: Array<string>,
-        isNoConsole: boolean,
-        isNoAlert: boolean,
-        isNoDebugger: boolean
+        exclude: Array<string>
     }
-}
-
-function extendRules ( isNoConsole: boolean, isNoAlert: boolean, isNoDebugger: boolean ): number[] {
-    let rules = []; 
-    if ( isNoConsole ) {
-        rules[ 'no-console' ] = 2;
-    }
-    if ( isNoAlert ) {
-        rules[ 'no-alert' ] = 2;
-    }
-    if ( isNoDebugger ) {
-        rules[ 'no-debugger' ] = 2;
-    }
-    return rules;
 }
 
 function getRunEslintFiles ( commitFile: Array<string>, includeFiles: Array<string> ): Array<string> {
@@ -68,7 +51,7 @@ function getEslintConfig (): string {
         '.eslintrc',
     ];
 
-    let eslintConfigPath: string = path.join(__dirname,'./eslintrc.config.js') ;
+    let eslintConfigPath: string = path.join(__dirname,'../config/eslintrc.config.js') ;
     for ( let i: number = 0; i < configPath.length; i++ ) {
         let currPath = path.join( cwd, configPath[ i ] );
         if ( fs.existsSync( currPath ) ) {
@@ -82,14 +65,12 @@ function getEslintConfig (): string {
 
 function eslintTask ( config: eslintTask.PropsData, commitFiles: Array<string>, currBranch: string, currPass: number ): number {
     const colors = require( 'colors' );
-    const { include, exclude, branchs, isNoConsole, isNoAlert, isNoDebugger } = config;
+    const { include, exclude, branchs} = config;
 
     let eslintConfig: string = getEslintConfig();
-    let rules = extendRules( isNoConsole, isNoAlert, isNoDebugger );
     const CLIEngine = require( 'eslint' ).CLIEngine;
     const cli = new CLIEngine( {
-        configFile: eslintConfig,
-        rules: rules
+        configFile: eslintConfig
     } );
 
     let pass: number = 0;
