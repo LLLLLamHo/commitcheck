@@ -104,3 +104,7 @@ function _sortShop( shopList, type ) {
 console.log( 333 );
 alert( 333 );
 debugger;
+
+for ( let i = 0; i < 100; i++ ) { 
+    console.log( 123 );
+}

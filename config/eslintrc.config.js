@@ -32,7 +32,9 @@ const eslintrc = {
            barBaz() {},
            qux
        };**/
-       "no-trailing-spaces":0, 
+        "no-plusplus": [0, { "allowForLoopAfterthoughts": true }],
+        "arrow-body-style": 0,
+        "no-trailing-spaces": 0,
         "object-shorthand": [2, "always", { "avoidQuotes": true }],
         "no-use-before-define": 0,
         "prefer-arrow-callback": 0,
@@ -43,12 +45,12 @@ const eslintrc = {
         "no-unused-expressions": [1, { "allowShortCircuit": true, "allowTernary": true }],
         "space-in-parens": [1, "always"],
         "comma-dangle": [2, {
-                "arrays": "never",
-                "objects": "never",
-                "imports": "never",
-                "exports": "never",
-                "functions": "never"
-            }],
+            "arrays": "never",
+            "objects": "never",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }],
         "class-methods-use-this": 0,
         "func-names": 0,
         "no-param-reassign": 0,
