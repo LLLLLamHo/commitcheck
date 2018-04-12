@@ -32,6 +32,8 @@ const eslintrc = {
            barBaz() {},
            qux
        };**/
+       "eqeqeq": 0,// 关闭强制使用===
+        "no-extra-boolean-cast": 0, // 关闭不能使用!!
         "no-plusplus": [0, { "allowForLoopAfterthoughts": true }],
         "arrow-body-style": 0,
         "no-trailing-spaces": 0,
