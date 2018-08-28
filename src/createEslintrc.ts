@@ -21,6 +21,5 @@ for ( let i: number = 0; i < configPath.length; i++ ) {
     }
 }
 if ( hasCreate ) {
-    return false;
     fs.copyFileSync( path.join( __dirname, './eslintrc.config.js' ), path.join( cwd, './.eslintrc.js' ) );
 }
